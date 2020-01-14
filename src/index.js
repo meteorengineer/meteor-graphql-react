@@ -1,4 +1,3 @@
-import './checkNpmVersions';
 import React, {
   useState,
   useEffect,
@@ -52,7 +51,7 @@ export const useMutation = (mutation) => {
   const [state, setState] = useState({ loading: true, error: null, data: null });
   const mutate = ({ variables }) => {
     setState({ ...state, loading: true });
-    client.query(mutation, { variables })
+    client.query(mutation, variables)
       .then(({ errors, data }) => setState({ loading: false, error: errors, data }));
     // TODO: handle errors
   }

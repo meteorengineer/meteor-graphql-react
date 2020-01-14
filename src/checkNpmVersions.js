@@ -1,5 +1,5 @@
 import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
 
 checkNpmVersions({
-  react: '16.11.x'
+  react: '16.x.x'
 }, 'meteorengineer:graphql-react');

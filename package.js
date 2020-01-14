@@ -13,8 +13,10 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.8.1');
   api.use('ecmascript');
-  api.use('tmeasday:check-npm-versions');
-  api.use('mpowaga:graphql');
+  api.use('tracker');
+  api.use('tmeasday:check-npm-versions@0.3.2');
+  api.use('meteorengineer:graphql');
+  api.addFiles('src/checkNpmVersions.js');
   api.mainModule('src/index.js');
 });
 
