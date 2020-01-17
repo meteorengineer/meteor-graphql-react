@@ -1,14 +1,25 @@
+import { Tracker } from 'meteor/tracker';
 import React, {
   useState,
   useEffect,
   useContext,
 } from 'react';
+import PropTypes from 'prop-types';
 
 export const GraphQLContext = React.createContext();
-export const GraphQLProvider = ({ client, children }) =>
+export const GraphQLProvider = ({ client, children }) => (
   <GraphQLContext.Provider value={client}>
     {children}
-  </GraphQLContext.Provider>;
+  </GraphQLContext.Provider>
+);
+GraphQLProvider.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  client: PropTypes.object.isRequired,
+  children: PropTypes.node,
+};
+GraphQLProvider.defaultProps = {
+  children: null,
+};
 
 export const useQuery = (query, { variables } = {}) => {
   const client = useContext(GraphQLContext);
@@ -36,7 +47,7 @@ export const useSubscription = (query, { variables } = {}) => {
       const subscription = client.subscribe(query, variables);
       const loading = !subscription.ready();
       const { errors, data } = subscription.result() || { errors: null, data: null };
-     
+
       setState({ loading, error: errors, data });
     });
 
@@ -54,7 +65,7 @@ export const useMutation = (mutation) => {
     client.query(mutation, variables)
       .then(({ errors, data }) => setState({ loading: false, error: errors, data }));
     // TODO: handle errors
-  }
+  };
 
   return [mutate, state];
 };
