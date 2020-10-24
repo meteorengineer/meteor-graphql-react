@@ -8,7 +8,7 @@ Package.describe({
   documentation: 'README.md',
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('1.8.1');
   api.use('ecmascript');
   api.use('tracker');
@@ -18,7 +18,7 @@ Package.onUse(function(api) {
   api.mainModule('src/index.js');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('meteorengineer:graphql-react');
